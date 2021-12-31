@@ -1,0 +1,33 @@
+Day 1:
+1st question : Print Anagrams Together 
+Given an array of strings, return all groups of strings that are anagrams. 
+The groups must be created in order of their appearance in the original array. 
+
+solution :
+
+Using hashing : O(n* m log m)
+class Solution{
+  public:
+  //using hashing
+    vector<vector<string> > Anagrams(vector<string>& string_list) {
+        //code here
+        int n= string_list.size();
+        unordered_map<string, vector<string>> mp;
+        for(int i=0;i<n;i++)
+        {
+           string s = string_list[i];
+           sort(s.begin(),s.end());
+           mp[s].push_back(string_list[i]);
+        }
+        vector<vector<string>> ans(mp.size());
+        int idx =0;
+        for(auto x : mp)
+        {
+            auto v = x.second;
+            for(int i=0;i<v.size();i++)
+              ans[idx].push_back(v[i]);
+             idx++;
+        }
+        return ans;
+    }
+};
