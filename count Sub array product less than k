@@ -1,0 +1,22 @@
+Given an array of positive numbers, the task is to find the number of 
+possible contiguous subarrays having product less than a given number k.
+//naive approach o(n*n)
+class Solution{
+  public:
+    int countSubArrayProductLessThanK(const vector<int>& a, int n, long long k) {
+        int ans=0;
+        for(int i=0;i<n;i++)
+        {
+         long long p=1; 
+            for(int j=i;j<n;j++)
+            {
+              p=p*a[j];
+              if(p<k)
+                ans++;
+              else
+                break;
+            }
+        }
+        return ans;
+    }
+};
