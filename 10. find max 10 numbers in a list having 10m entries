@@ -1,0 +1,27 @@
+//find max 10 numbers in a list having 10m entries
+----------------------------------------------------
+class Solution
+{
+private:
+public:
+vector<int> Max10Numbers(vector<int> &numbers)
+{
+ priority_queue<int,vector<int>,greater<int>> pq;
+ int n = numbers.size();
+ for(int i=0;i<n;i++)
+ {
+   pq.push(numbers[i]);
+   if(pq.size() > 10)
+     pq.pop();
+ }
+ vector<int> res(10);
+ int i=9;
+ while(!pq.empty())
+ {
+   res[i]=pq.top();
+   i--;
+   pq.pop();
+ }
+ return res;   
+}
+};
