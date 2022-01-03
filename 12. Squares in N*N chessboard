@@ -1,0 +1,27 @@
+Find total number of Squares in a N*N cheesboard.
+-----------------------------------------------------
+//o(n)
+class Solution {
+  public:
+    long long squaresInChessBoard(long long N) {
+        // code here
+        long long total=0;
+        if(N==1)
+        return 1;
+        for(long long i=N;i>=1;i--)
+        total+=i*i;
+        return total;
+    }
+};
+----------------------------------------
+//obsevation : submission of squares of n natural no.
+// 1^2 + 2^2 + 3^2..............n^2 = (n(n+1)(2n+1)/6)
+------------------------------------
+class Solution {
+  public:
+    long long squaresInChessBoard(long long N) {
+        // code here
+        long long ans= (N*(N+1)*(2*N+1))/6;
+        return ans;
+    }
+};
