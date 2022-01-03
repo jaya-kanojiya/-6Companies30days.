@@ -1,0 +1,27 @@
+//Given an unsorted array Arr of size N of positive integers. One number 'A' from set {1, 2, …N} 
+is missing and one number 'B' occurs twice in array. Find these two numbers.
+---------------------------------------------------------------------------------
+tc=o(n)
+sc= o(n)
+
+int *findTwoElement(int *arr, int n) {
+        // code here
+       int dup[n]={0};
+       int rep,mis;
+       for(int i=0;i<n;i++)
+       {
+           dup[arr[i]++];
+       }
+       for(int i=0;i<n;i++)
+       {
+           if(dup[i]==2)
+           rep=dup[i];
+           if(dup[i]==0)
+           mis=dup[i];
+       }
+       int ans[2];
+       ans[0]=rep;
+       ans[1]=mis;
+       return ans;
+       
+    }
