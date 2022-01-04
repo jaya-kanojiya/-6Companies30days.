@@ -1,0 +1,39 @@
+//An encoded string (s) is given, the task is to decode it. The pattern in which the strings were encoded were as follows
+//original string: abbbababbbababbbab 
+//encoded string : 3[a3[b]1[ab]]
+//sol. using recursion
+string helper(string & s, int & i)
+{
+    string result;
+    int n=s.length();
+    while(i<n && s[i]!=']')
+    {
+        if(isdigit(s[i]))
+        {
+            int k=0;
+            while(i<n && isdigit(s[i]))
+                k= k*10+ s[i++]-'0';
+            i++;
+            string r = helper(s,i);
+            while(k>0)
+            {
+                result+=r;
+                k--;
+            }
+            i++;
+        }
+        else
+            result+=s[i++];
+      }
+    return result;
+}
+class Solution{
+public:
+    string decodedString(string s){
+        // code here
+        int i=0;
+        return helper(s,i);
+    }
+};
+
+//also we can use 2 stack ===1 for num nd 1 for char
