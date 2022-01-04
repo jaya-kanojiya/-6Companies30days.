@@ -1,0 +1,23 @@
+Given an array of integers and a number k, write a function that returns true if given
+array can be divided into pairs such that sum of every pair is divisible by k.
+//using freq array
+ bool canPair(vector<int> nums, int k) {
+        // Code here.
+        int n=nums.size();
+        map<int,int>mp;
+        for(int i=0;i<n;i++)
+         mp[nums[i]%k]++;
+         for(int i=0;i<n;i++)
+         {
+             int r=nums[i]%k;
+             if(r==0)
+             {
+             if(mp[0] & 1)
+             return 0;
+             }
+             else if(mp[r]!=mp[k-r])
+             return 0;
+         }
+         return 1;
+        -------------------
+        also can do using hashing
