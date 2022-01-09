@@ -1,0 +1,34 @@
+Given a binary tree and a node called target. Find the minimum time required to burn the complete binary 
+tree if the target is set on fire. It is known that in 1 second all nodes connected to a given node get 
+burned. That is its left child, right child, and parent.
+
+class Solution {
+ public:
+int ans=0;
+   int diamete(Node* root,int t) {
+      if(root==NULL) return 0;
+      int x=diamete(root->left,t),y=diamete(root->right,t);
+if(root->data==t)
+{
+   ans=max(x,y);
+   return -1;
+}
+if(x<0) { x=abs(x);
+   ans=max(ans,x+y);
+   return -1-x;
+}
+if(y<0) { y=abs(y);
+   ans=max(ans,x+y);
+   return -1-y;
+}
+if(x<y) return(y+1);
+else return x+1;
+  
+   }
+
+   int minTime(Node* root, int target) 
+   {  
+      diamete(root,target);
+      return ans;
+   }
+};
