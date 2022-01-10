@@ -1,0 +1,35 @@
+Given an integer array arr of size N, the task is to divide it into two sets S1 and S2 such that 
+the absolute difference between their sums is minimum and find the minimum difference
+
+	int minDifference(int arr[], int n)  { 
+	    // Your code goes here
+	    int sum=0;
+	    for(int i=0;i<n;i++)
+	     sum+=arr[i];
+	     
+	     for(int i=0;i<=n;i++)
+	     for(int j=0;j<=sum;j++)
+	     {
+	         if(
+	     bool dp[n+1][sum+1];
+	     j==0)
+	         dp[i][j]=true;
+	         else if(i==0)
+	         dp[i][j]=false;
+	         else if(arr[i-1]>j)
+	         dp[i][j]=dp[i-1][j];
+	         else
+	         dp[i][j]= dp[i-1][j] || dp[i-1][j-arr[i-1]];
+	     }
+	     //min dif
+	     int diff = INT_MAX;
+	     for(int i=0;i<=sum/2; i++)
+	     {
+	         int sum1= i;
+	         int sum2= sum-i;
+	         if(dp[n][i]==true && diff > abs(sum1-sum2))
+	           diff= abs(sum1-sum2);
+	      
+	     }
+	     return diff;
+	}
