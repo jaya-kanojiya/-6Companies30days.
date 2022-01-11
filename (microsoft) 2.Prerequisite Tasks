@@ -1,0 +1,34 @@
+There are a total of N tasks, labeled from 0 to N-1. Some tasks may have prerequisites, for example to do task 0 you have to first complete task 1, which is expressed as a pair: [0, 1]
+Given the total number of tasks N and a list of prerequisite pairs P, find if it is possible to finish all tasks.
+
+bool dfs(int v, vector<int> adj[], vector<int>& vis, vector<int>& st)
+    {
+        st[v]=true;
+        if(!vis[v])
+        {
+            vis[v]=true;
+            for(auto child : adj[v])
+            {
+                if(!vis[child] && dfs(child,adj,vis,st))
+                return true;
+                if(st[child])
+                return true;
+            }
+        }
+        st[v]=false;
+        return false;
+    }
+	bool isPossible(int N, vector<pair<int, int> >& prerequisites) {
+	  vector<int>adj[N];
+	  for(auto& it : prerequisites)
+	    adj[it.first].push_back(it.second);
+	  vector<int> vis(N, false);
+	  vector<int> st(N,false);
+	  for(int i=0;i<N;i++)
+	  {
+	      if(!vis[i])
+	        if(dfs(i,adj,vis,st))
+	          return 0;
+	  }
+	  return -1;
+	}
